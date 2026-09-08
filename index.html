@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="id"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIM-KOJA V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<div id="login" class="login-page">
+  <div class="orb orb1"></div><div class="orb orb2"></div>
+  <div class="login-wrap">
+    <div class="brand-row"><div class="brand-logo"><i class="bi bi-heart-pulse-fill"></i></div>
+      <div><b>SIM-KOJA</b><small>Sistem Informasi Manajemen Kamar Operasi</small></div></div>
+    <div class="login-card">
+      <span class="eyebrow">SECURE ACCESS</span><h1>Selamat Datang</h1>
+      <p class="text-muted">Kelola SDM klinis, kompetensi, kewenangan dan dokumen dalam satu dashboard.</p>
+      <form id="loginForm">
+        <label class="form-label">Username</label><input id="u" class="form-control" required>
+        <label class="form-label mt-3">Password</label>
+        <div class="input-group"><input id="p" type="password" class="form-control" required><button class="btn btn-outline-secondary" type="button" id="eye"><i class="bi bi-eye"></i></button></div>
+        <button class="btn btn-primary w-100 btn-lg mt-4" type="submit">Masuk ke SIM-KOJA <i class="bi bi-arrow-right-short"></i></button>
+        <div class="text-center mt-2"><button id="createAccountBtn" type="button" class="btn btn-link">Buat Akun Baru</button></div>
+      </form>
+    </div>
+    <div class="login-foot">RSUD Koja • Clinical Staff Management System</div>
+  </div>
+</div>
+
+<div id="app" class="d-none">
+<aside id="side" class="sidebar">
+  <div class="side-head"><div class="brand-logo sm"><i class="bi bi-heart-pulse-fill"></i></div><div class="brand-copy"><b>SIM-KOJA</b><small>V2.0 Enterprise</small></div><button id="pin" class="icon-btn dark"><i class="bi bi-chevron-double-left"></i></button></div>
+  <div class="side-scroll">
+    <div class="caption">MAIN</div>
+    <button class="nav-link active" data-view="dashboard"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></button>
+    <div class="caption">SDM KLINIS</div>
+    <button class="nav-link" data-view="employees"><i class="bi bi-people-fill"></i><span>Profil Pegawai</span></button>
+    <button class="nav-link" data-view="cv"><i class="bi bi-person-vcard-fill"></i><span>CV & Riwayat</span></button>
+    <button class="nav-link" data-view="competency"><i class="bi bi-award-fill"></i><span>Kompetensi</span></button>
+    <button class="nav-link" data-view="authority"><i class="bi bi-shield-check"></i><span>Kewenangan Klinis</span></button>
+    <button class="nav-link" data-view="credentials"><i class="bi bi-patch-check-fill"></i><span>Kredensial</span></button>
+    <div class="caption">DOCUMENTS</div>
+    <button class="nav-link" data-view="documents"><i class="bi bi-folder2-open"></i><span>Document Center</span><em id="docCount">0</em></button>
+    <button class="nav-link" data-view="matrix"><i class="bi bi-table"></i><span>Matriks Kompetensi</span></button>
+    <div class="caption">OPERASIONAL</div>
+    <button class="nav-link" data-view="assignments"><i class="bi bi-calendar3"></i><span>Penugasan OK</span></button>
+    <button class="nav-link" data-view="monitoring"><i class="bi bi-activity"></i><span>Monitoring</span></button>
+    <div class="caption">REPORTS</div>
+    <button class="nav-link" data-view="reports"><i class="bi bi-bar-chart-line-fill"></i><span>Laporan</span></button>
+    <button class="nav-link admin-only" data-view="user-management"><i class="bi bi-person-gear"></i><span>Manajemen User</span></button>
+    <button class="nav-link" data-view="settings"><i class="bi bi-gear-fill"></i><span>Settings</span></button>
+  </div>
+  <div class="side-foot"><button id="quick" class="quick"><i class="bi bi-cloud-arrow-up-fill"></i><span><b>Quick Upload</b><small>Tambah dokumen pegawai</small></span></button><button id="logout" class="logout"><i class="bi bi-box-arrow-left"></i><span>Logout</span></button></div>
+</aside>
+
+<div class="main">
+<header class="topbar">
+  <div class="d-flex align-items-center gap-2"><button id="mobile" class="icon-btn d-lg-none"><i class="bi bi-list"></i></button><div class="crumb">SIM-KOJA <i class="bi bi-chevron-right"></i> <b id="crumb">Dashboard</b></div></div>
+  <div class="actions"><div class="search"><i class="bi bi-search"></i><input id="search" placeholder="Search anything..."></div>
+    <button id="notif" class="icon-btn bell"><i class="bi bi-bell-fill"></i><span id="badge">0</span></button>
+    <div class="dropdown"><button class="profile" data-bs-toggle="dropdown"><span class="avatar">AD</span><span class="hide-sm"><b>Admin SIM-KOJA</b><small>Super Admin</small></span><i class="bi bi-chevron-down"></i></button>
+      <ul class="dropdown-menu dropdown-menu-end border-0 shadow"><li><button class="dropdown-item" data-view="settings">Profil & Settings</button></li><li><button class="dropdown-item" id="logout2">Logout</button></li></ul>
+    </div>
+  </div>
+</header>
+<main id="content" class="content"></main>
+<footer>SIM-KOJA V2.0 • SDM & Kewenangan Klinis Kamar Operasi • <span id="dateNow"></span></footer>
+</div></div>
+
+<div class="modal fade" id="empModal"><div class="modal-dialog modal-xl modal-dialog-scrollable"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title">Data Pegawai</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+  <form id="empForm"><div class="modal-body"><input id="empId" type="hidden"><div class="row g-3">
+    <div class="col-md-7"><label class="form-label">Nama Lengkap *</label><input id="empName" class="form-control" required></div>
+    <div class="col-md-5"><label class="form-label">NIP</label><input id="empNip" class="form-control"></div>
+    <div class="col-md-4"><label class="form-label">Profesi</label><select id="empProf" class="form-select"><option>Perawat</option><option>Dokter</option><option>Penata Anestesi</option><option>Administrasi</option></select></div>
+    <div class="col-md-4"><label class="form-label">Jabatan</label><input id="empPos" class="form-control"></div>
+    <div class="col-md-4"><label class="form-label">Unit</label><select id="empUnit" class="form-select"><option>Kamar Operasi</option><option>Kamar Operasi 3B</option><option>Kamar Operasi 4C</option><option>Kamar Operasi 5D</option><option>Anestesi</option><option>Recovery Room</option></select></div>
+    <div class="col-md-4"><label class="form-label">Status</label><select id="empStatus" class="form-select"><option>PNS</option><option>Non-PNS</option><option>PPPK</option><option>PPPK PW</option></select></div>
+    <div class="col-md-4"><label class="form-label">No. HP</label><input id="empPhone" class="form-control"></div>
+    <div class="col-md-4"><label class="form-label">Email</label><input id="empEmail" class="form-control"></div>
+    <div class="col-md-4"><label class="form-label">Nomor STR</label><input id="empStr" class="form-control"></div>
+    <div class="col-md-4"><label class="form-label">Masa Aktif STR</label><input id="empStrExpiry" type="date" class="form-control"></div>
+    <div class="col-md-4 d-flex align-items-end"><div class="form-check mb-2"><input id="empStrLifetime" class="form-check-input" type="checkbox"><label class="form-check-label" for="empStrLifetime">STR seumur hidup</label></div></div>
+    <div class="col-md-4"><label class="form-label">Nomor SIPP</label><input id="empSipp" class="form-control"></div>
+    <div class="col-12"><label class="form-label">Alamat</label><textarea id="empAddr" class="form-control"></textarea></div>
+  </div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button><button class="btn btn-primary">Simpan</button></div></form>
+</div></div></div>
+
+<!-- Create Account Modal -->
+<div class="modal fade" id="createAccountModal"><div class="modal-dialog"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title">Buat Akun Baru</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
+  <form id="createAccountForm"><div class="modal-body">
+    <div class="mb-3"><label class="form-label">Nama</label><input id="createName" class="form-control" required></div>
+    <div class="mb-3"><label class="form-label">Username</label><input id="createUsername" class="form-control" required></div>
+    <div class="mb-3"><label class="form-label">Password</label><input id="createPassword" type="password" class="form-control" required></div>
+    <div class="mb-3"><label class="form-label">Kaitkan dengan Pegawai (opsional)</label><select id="createEmployee" class="form-select"><option value="">-- Tidak ada --</option></select></div>
+  </div>
+  <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button><button class="btn btn-primary">Buat & Masuk</button></div></form>
+</div></div></div>
+
+<div class="modal fade" id="docModal"><div class="modal-dialog modal-xl modal-dialog-scrollable"><div class="modal-content">
+ <div class="modal-header"><div><h5 class="modal-title">Upload / Kelola Dokumen</h5><small class="text-muted">PDF dan gambar dapat dipreview langsung.</small></div><button class="btn-close" data-bs-dismiss="modal"></button></div>
+ <form id="docForm"><div class="modal-body"><input id="docId" type="hidden"><div class="row g-4">
+   <div class="col-lg-7"><div class="row g-3">
+    <div class="col-md-6"><label class="form-label">Pegawai *</label><select id="docEmp" class="form-select" required></select></div>
+    <div class="col-md-6"><label class="form-label">Jenis Dokumen *</label><select id="docType" class="form-select" required></select></div>
+    <div class="col-md-6"><label class="form-label">Nomor</label><input id="docNo" class="form-control"></div>
+    <div class="col-md-3"><label class="form-label">Terbit</label><input id="docIssue" type="date" class="form-control"></div>
+    <div class="col-md-3"><label class="form-label">Expired</label><input id="docExp" type="date" class="form-control"></div>
+    <div class="col-12"><label class="form-label">File</label><div id="drop" class="upload-zone"><div class="upload-icon"><i class="bi bi-cloud-arrow-up-fill"></i></div><b>Drag & Drop File</b><div class="text-muted small">atau klik tombol • maksimum 10 MB</div><button class="btn btn-outline-primary btn-sm mt-3" type="button" id="pick">Pilih File</button><input id="file" type="file" class="d-none" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"></div><div id="fileInfo" class="mt-2"></div></div>
+    <div class="col-12"><label class="form-label">Keterangan</label><textarea id="docNotes" class="form-control"></textarea></div>
+   </div></div>
+   <div class="col-lg-5"><div class="preview-box"><div class="preview-head"><b><i class="bi bi-eye me-1"></i>Preview</b><span>LIVE</span></div><div id="livePreview" class="empty-preview"><i class="bi bi-file-earmark-text"></i><div>Preview akan tampil di sini</div></div></div></div>
+ </div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button><button class="btn btn-primary"><i class="bi bi-cloud-arrow-up me-1"></i>Simpan Dokumen</button></div></form>
+</div></div></div>
+
+<div class="modal fade" id="viewer"><div class="modal-dialog modal-fullscreen"><div class="modal-content viewer"><div class="modal-header"><div><h5 id="viewerTitle" class="modal-title">Document Viewer</h5><small id="viewerMeta" class="text-white-50"></small></div><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body p-0"><div id="viewerBody" class="viewer-body"></div></div><div class="modal-footer"><button id="downloadBtn" class="btn btn-primary"><i class="bi bi-download me-1"></i>Download</button><button class="btn btn-outline-light" data-bs-dismiss="modal">Tutup</button></div></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4"></script><script src="app.js"></script>
+</body></html>
