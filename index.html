@@ -1,120 +1,460 @@
-<!doctype html>
-<html lang="id"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SIM-KOJA V2</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-<link rel="stylesheet" href="style.css"></head>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Monitoring Kamar Operasi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-<div id="login" class="login-page">
-  <div class="orb orb1"></div><div class="orb orb2"></div>
-  <div class="login-wrap">
-    <div class="brand-row"><div class="brand-logo"><i class="bi bi-heart-pulse-fill"></i></div>
-      <div><b>SIM-KOJA</b><small>Sistem Informasi Manajemen Kamar Operasi</small></div></div>
-    <div class="login-card">
-      <span class="eyebrow">SECURE ACCESS</span><h1>Selamat Datang</h1>
-      <p class="text-muted">Kelola SDM klinis, kompetensi, kewenangan dan dokumen dalam satu dashboard.</p>
-      <form id="loginForm">
-        <label class="form-label">Username</label><input id="u" class="form-control" required>
-        <label class="form-label mt-3">Password</label>
-        <div class="input-group"><input id="p" type="password" class="form-control" required><button class="btn btn-outline-secondary" type="button" id="eye"><i class="bi bi-eye"></i></button></div>
-        <button class="btn btn-primary w-100 btn-lg mt-4" type="submit">Masuk ke SIM-KOJA <i class="bi bi-arrow-right-short"></i></button>
-        <div class="text-center mt-2"><button id="createAccountBtn" type="button" class="btn btn-link">Buat Akun Baru</button></div>
-      </form>
+
+    <!-- ========================================== -->
+    <!-- TAMPILAN 1: FORM INPUT                     -->
+    <!-- ========================================== -->
+    <div id="formView" class="container form-container">
+        <h2>Input Data Monitoring Kamar Operasi</h2>
+
+        <div class="section-title">📋 Informasi Umum</div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Tanggal / Hari</label>
+                <input type="date" id="inpTanggal">
+            </div>
+            <div class="form-group">
+                <label>Ruangan Kamar Operasi</label>
+                <select id="inpRuangan">
+                    <option value="OK 3B">OK 3B</option>
+                    <option value="OK 5D" selected>OK 5D</option>
+                    <option value="OK 4C">OK 4C</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group" style="flex: 1;">
+                <label>Nama Pengumpul Data</label>
+                <input type="text" id="inpPengumpul" list="listPengumpul" placeholder="Ketik atau pilih nama...">
+                <datalist id="listPengumpul">
+                    <option value="Arief Riandy Sulistyono, A.Md. Kep"></option>
+                    <option value="Ns. Aris Sunandar, S.Kep"></option>
+                    <option value="Bayu Doni Wicaksono, A.Md. Kep"></option>
+                    <option value="Ceptian Dwi Hidayat, A.Md. Kep"></option>
+                    <option value="Dara Oktavia, A.Md. Kep"></option>
+                    <option value="Debby Simatupang, A.Md. Kep"></option>
+                    <option value="Devy Handayani, A.Md.Kep"></option>
+                    <option value="Djoko Kisharyanto, AMK"></option>
+                    <option value="Eka Rachmad Hidayat, AMK"></option>
+                    <option value="Fendi Warsito, A.Md. Kep"></option>
+                    <option value="Fitridawati, A.Md. Kep"></option>
+                    <option value="Fujiati Fajar, A.Md. Kep"></option>
+                    <option value="Imam Riyadi, A.Md. Kep"></option>
+                    <option value="Masruroh, A.Md. Kep"></option>
+                    <option value="Maurist Agustara Lumban R, A.Md. Kep"></option>
+                    <option value="Melati Sari Dewi, A.Md. Kep"></option>
+                    <option value="MHD Satria Irvan, A.Md. Kep"></option>
+                    <option value="Muhamad Hasbi Yusuf, A.Md. Kep"></option>
+                    <option value="Muhamad Rahman Ansori, A.Md. Kep"></option>
+                    <option value="Ns Mustofa, S.Kep"></option>
+                    <option value="Nafissa Almandita, S.Tr.Kep., Ners"></option>
+                    <option value="Nia Apriliyanti, AMK"></option>
+                    <option value="Nico Teo Pratama, A.Md. Kep"></option>
+                    <option value="Ns. Ali Maghfur, S.Kep"></option>
+                    <option value="Ns. Arifudin S.Kep"></option>
+                    <option value="Ns. Bela Novi Anggara, S.Kep"></option>
+                    <option value="Ns. Etti Manurung, S.Kep"></option>
+                    <option value="Ns. Kholisotus Sholihah, SKep"></option>
+                    <option value="Ns. Mercu Neza, S.Kep"></option>
+                    <option value="Ns. Nardi, S. Kep"></option>
+                    <option value="Ns. Nurhayati Rusli, S.Kep"></option>
+                    <option value="Ns. Palupi Mardika, S.Kep"></option>
+                    <option value="Ns. Reni Oktaria Mulyani, S.Kep"></option>
+                    <option value="Ns. Retno Yuli Dwiningrum, S.Kep"></option>
+                    <option value="Ns. Sofiana Sri Nasa, S.Kep"></option>
+                    <option value="Ns. Susanti Oktaria, Skep"></option>
+                    <option value="Ns. Windo Hariadi Wijaya, S.Kep"></option>
+                    <option value="Nur Hidayat, A.Md. Kep"></option>
+                    <option value="Nur Komalasari, AMK"></option>
+                    <option value="Nurhayati Rominar, A.Md. Kep"></option>
+                    <option value="Rahmat Aprianto, A.Md. Kep"></option>
+                    <option value="Randa Septiadi, A.Md. Kep"></option>
+                    <option value="Ns Rentawati M. Purba, S.Kep"></option>
+                    <option value="Ns Riani Primaningsih, S.Kep"></option>
+                    <option value="Ricky Fauzi Ginanjar, AMK"></option>
+                    <option value="Ridwan Agung, A.Md. Kep"></option>
+                    <option value="Selvi Restia Amanda Puteri, A.Md. Kep"></option>
+                    <option value="Sigit Purnomo, A.Md. Kep"></option>
+                    <option value="Sintia Priwanti, AMK"></option>
+                    <option value="Siti Nurjanah, AMK"></option>
+                    <option value="Sri Muhyani, A.Md. Kep"></option>
+                    <option value="Sri Wulandari Setianingsih, A.Md. Kep"></option>
+                    <option value="Suryanto, A.Md. Kep"></option>
+                    <option value="Tyas Ratna Puri, AMK"></option>
+                    <option value="Zakki Maulana, A.Md. Kep"></option>
+                </datalist>
+            </div>
+        </div>
+
+        <div class="section-title">👤 Tambah Data Pasien</div>
+        <div class="patient-form-grid">
+            <div class="form-group">
+                <label>Nama Lengkap Pasien</label>
+                <input type="text" id="inpNama" placeholder="Masukkan nama pasien">
+            </div>
+            <div class="form-group">
+                <label>No. RM</label>
+                <input type="text" id="inpRM" placeholder="Masukkan No. RM">
+            </div>
+            <div class="form-group">
+                <label>Diagnosa</label>
+                <input type="text" id="inpDiagnosa" placeholder="Masukkan diagnosa">
+            </div>
+            <div class="form-group">
+                <label>Tindakan Operasi</label>
+                <input type="text" id="inpTindakan" placeholder="Masukkan tindakan">
+            </div>
+        </div>
+        <div style="text-align: right; margin-top: 12px;">
+            <button type="button" id="btnTambahPasien" class="btn btn-success" onclick="tambahPasien()">➕ Tambah Pasien</button>
+            <button type="button" id="btnBatalEdit" class="btn btn-secondary" style="display:none;" onclick="batalEdit()">✖ Batal</button>
+        </div>
+
+        <div class="section-title">📝 Daftar Pasien (<span id="jumlahPasien">0</span>)</div>
+        <table id="tabelPasien" class="tabel-daftar">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">No</th>
+                    <th style="width: 25%;">Nama Pasien</th>
+                    <th style="width: 12%;">No. RM</th>
+                    <th style="width: 20%;">Diagnosa</th>
+                    <th style="width: 23%;">Tindakan</th>
+                    <th style="width: 15%;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="bodyDaftarPasien">
+                <tr><td colspan="6" class="empty-row">Belum ada pasien ditambahkan</td></tr>
+            </tbody>
+        </table>
+
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="mulaiDataBaru()">➕ Data Baru</button>
+            <button type="button" class="btn btn-warning" onclick="simpanData()">💾 Simpan</button>
+            <button type="button" class="btn btn-primary" onclick="tampilkanOutput()">📄 Lihat</button>
+        </div>
     </div>
-    <div class="login-foot">RSUD Koja • Clinical Staff Management System</div>
-  </div>
+
+    <!-- ========================================== -->
+    <!-- TAMPILAN 2: OUTPUT / HASIL CETAK (5 LEMBAR)-->
+    <!-- ========================================== -->
+    <div id="outputView" class="container hidden">
+        
+        <div class="action-buttons no-print">
+            <button onclick="kembaliKeForm()" class="btn btn-secondary">⬅️ Kembali ke Form</button>
+            <button onclick="window.print()" class="btn btn-primary">🖨️ Cetak Semua Dokumen</button>
+        </div>
+
+        <!-- ================= LEMBAR 1 ================= -->
+        <div class="page-container">
+            <div class="header">
+                <div class="logo"><img src="icon.png" alt="Logo" class="logo-img"></div>
+                <div class="title">MONITOR DAN EVALUASI STANDAR PELAYANAN MINIMAL KAMAR OPERASI</div>
+            </div>
+            <div class="info-section">
+                <div class="info-row">RUANGAN : <span id="outRuangan1" class="out-text"></span></div>
+                <div class="info-row">HARI/TGL : <span id="outTanggal1" class="out-text"></span></div>
+            </div>
+            <table class="tabel-output">
+                <colgroup>
+                    <col style="width: 3%;"><col style="width: 15%;"><col style="width: 6%;">
+                    <col style="width: 14%;"><col style="width: 12%;">
+                    <col style="width: 4.5%;"><col style="width: 4.5%;"><col style="width: 4.5%;">
+                    <col style="width: 4.5%;"><col style="width: 4.5%;"><col style="width: 4.5%;">
+                    <col style="width: 4.5%;"><col style="width: 4.5%;"><col style="width: 4.5%;">
+                    <col style="width: 4.5%;"><col style="width: 4.5%;"><col style="width: 4.5%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="header-center">NO</th>
+                        <th class="header-center">NAMA LENGKAP PASIEN</th>
+                        <th class="header-center">NO.RM</th>
+                        <th class="header-center">DIAGNOSA</th>
+                        <th class="header-center">TINDAKAN OPERASI</th>
+                        <th><div class="rotated-text">KEJADIAN KONSIL TAS DURANTE</div></th>
+                        <th><div class="rotated-text">KEJADIAN LUKA BAKAR AKIBAT DATERM</div></th>
+                        <th><div class="rotated-text">KESESUAIAN DX PRE DAN POST OPERASI</div></th>
+                        <th><div class="rotated-text">KEJADIAN KESALAHAN GOLONGAN DARAH</div></th>
+                        <th><div class="rotated-text">WAKTU OPERASI ELEKTIF ≤ 2 HARI</div></th>
+                        <th><div class="rotated-text">TIDAK ADANYA KEJADIAN KEMATIAN DI RS</div></th>
+                        <th><div class="rotated-text">TIDAK ADANYA KEJADIAN SALAH OPERASI</div></th>
+                        <th><div class="rotated-text">TIDAK ADANYA KEJADIAN SALAH ORANG</div></th>
+                        <th><div class="rotated-text">TIDAK ADANYA KEJADIAN SALAH TINDAKAN PADA PASIEN</div></th>
+                        <th><div class="rotated-text">TIDAK ADANYA KEJADIAN PASIEN JATUH SETELAH OPERASI</div></th>
+                        <th><div class="rotated-text">TIDAK ADANYA KEJADIAN TERINGGALNYA BENDA ASING PADA TUBUH PASIEN SETELAH OPERASI</div></th>
+                        <th class="header-center">N</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody1"></tbody>
+            </table>
+            <div class="footer">
+                <div class="footer-top">
+                    <div class="keterangan">
+                        <p>KETERANGAN</p>
+                        <p>N = NUMERATOR INDIKATOR KELENGKAPAN PENGISIAN ASSESMEN AWAL OPERASI UNTUK KOLOM 4, 5, 6 DIISI DENGAN</p>
+                        <p>0 = TIDAK DILAKUKAN</p>
+                        <p>1 = DILAKUKAN</p>
+                    </div>
+                    <div class="total-section">
+                        <table class="total-table">
+                            <tr><td style="font-weight: bold;">TOTAL</td><td><span id="totalN1">0</span></td></tr>
+                            <tr><td style="font-weight: bold;">PERSENTASE N/D *100%</td><td><span id="persentase1">0%</span></td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="signature-row">
+                    <div class="sig-item"><p class="sig-label">PENGUMPUL DATA</p><div class="sig-space"></div><p class="sig-name" id="outPengumpul1">-</p></div>
+                    <div class="sig-item"><p class="sig-label">VALIDASI KEPALA RUANGAN</p><div class="sig-space"></div><p class="sig-name" id="outValidasi1">-</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= LEMBAR 2 ================= -->
+        <div class="page-container">
+            <div class="header">
+                <div class="logo"><img src="icon.png" alt="Logo" class="logo-img"></div>
+                <div class="title">MONITORING KOMPLIKASI ANESTESI</div>
+            </div>
+            <div class="info-section">
+                <div class="info-row">RUANGAN : <span id="outRuangan2" class="out-text"></span></div>
+                <div class="info-row">HARI/TGL : <span id="outTanggal2" class="out-text"></span></div>
+            </div>
+            <table class="tabel-output">
+                <colgroup>
+                    <col style="width: 3%;"><col style="width: 17%;"><col style="width: 8%;">
+                    <col style="width: 15%;"><col style="width: 15%;">
+                    <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
+                    <col style="width: 7%;"><col style="width: 7%;"><col style="width: 7%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="header-center">NO</th>
+                        <th class="header-center">NAMA LENGKAP PASIEN</th>
+                        <th class="header-center">NO.RM</th>
+                        <th class="header-center">DIAGNOSA</th>
+                        <th class="header-center">TINDAKAN OPERASI</th>
+                        <th><div class="rotated-text">KOMPLIKASI ANESTESI KARENA OVERDOSIS</div></th>
+                        <th><div class="rotated-text">REAKSI ANESTESI DAN SALAH PENEMPATAN</div></th>
+                        <th><div class="rotated-text">KEJADIAN DENGAN SATURASI 02 PADA SAAT DURANTE ANESTESI PASIEN DENGAN GENERAL ANESTESI</div></th>
+                        <th><div class="rotated-text">ASSESMEN PRA SEDASI DAN PRA ANESTESI</div></th>
+                        <th><div class="rotated-text">MONITORING STATUS FISIOLOGIS SELAMA ANESTESI</div></th>
+                        <th class="header-center">N</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody2"></tbody>
+            </table>
+            <div class="footer">
+                <div class="footer-top">
+                    <div class="keterangan">
+                        <p>KETERANGAN</p>
+                        <p>N = NUMERATOR INDIKATOR KELENGKAPAN PENGISIAN ASSESMEN AWAL OPERASI UNTUK KOLOM 4, 5, 6 DIISI DENGAN</p>
+                        <p>0 = TIDAK DILAKUKAN</p>
+                        <p>1 = DILAKUKAN</p>
+                    </div>
+                    <div class="total-section">
+                        <table class="total-table">
+                            <tr><td style="font-weight: bold;">TOTAL</td><td><span id="totalN2">0</span></td></tr>
+                            <tr><td style="font-weight: bold;">PERSENTASE N/D *100%</td><td><span id="persentase2">0%</span></td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="signature-row">
+                    <div class="sig-item"><p class="sig-label">PENGUMPUL DATA</p><div class="sig-space"></div><p class="sig-name" id="outPengumpul2">-</p></div>
+                    <div class="sig-item"><p class="sig-label">VALIDASI KEPALA RUANGAN</p><div class="sig-space"></div><p class="sig-name" id="outValidasi2">-</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= LEMBAR 3 ================= -->
+        <div class="page-container">
+            <div class="header">
+                <div class="logo"><img src="icon.png" alt="Logo" class="logo-img"></div>
+                <div class="title">MONITORING EVALUASI MUTU KAMAR OPERASI TINDAKAN OPERASI</div>
+            </div>
+            <div class="info-section">
+                <div class="info-row">RUANGAN : <span id="outRuangan3" class="out-text"></span></div>
+                <div class="info-row">HARI/TGL : <span id="outTanggal3" class="out-text"></span></div>
+            </div>
+            <table class="tabel-output">
+                <colgroup>
+                    <col style="width: 3%;"><col style="width: 19%;"><col style="width: 8%;">
+                    <col style="width: 16%;"><col style="width: 16%;">
+                    <col style="width: 9.5%;"><col style="width: 9.5%;"><col style="width: 9.5%;">
+                    <col style="width: 9.5%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="header-center">NO</th>
+                        <th class="header-center">NAMA LENGKAP PASIEN</th>
+                        <th class="header-center">NO.RM</th>
+                        <th class="header-center">DIAGNOSA</th>
+                        <th class="header-center">TINDAKAN OPERASI</th>
+                        <th class="header-horizontal">ASSESMEN PRABEDAH</th>
+                        <th class="header-horizontal">PENANDAAN LOKASI OPERASI</th>
+                        <th class="header-horizontal">PELAKSANAAN SURGICEL SAFETY LIST PADA PASIEN</th>
+                        <th class="header-horizontal">DISKREPANSI DIAGNOSA MEDIS PRE DENGAN POST OPERASI</th>
+                        <th class="header-center">N</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody3"></tbody>
+            </table>
+            <div class="footer">
+                <div class="footer-top">
+                    <div class="keterangan">
+                        <p>KETERANGAN</p>
+                        <p>N = NUMERATOR INDIKATOR KELENGKAPAN PENGISIAN ASSESMEN AWAL OPERASI UNTUK KOLOM 4, 5, 6 DIISI DENGAN</p>
+                        <p>0 = TIDAK DILAKUKAN</p>
+                        <p>1 = DILAKUKAN</p>
+                    </div>
+                    <div class="total-section">
+                        <table class="total-table">
+                            <tr><td style="font-weight: bold;">TOTAL</td><td><span id="totalN3">0</span></td></tr>
+                            <tr><td style="font-weight: bold;">PERSENTASE N/D *100%</td><td><span id="persentase3">0%</span></td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="signature-row">
+                    <div class="sig-item"><p class="sig-label">PENGUMPUL DATA</p><div class="sig-space"></div><p class="sig-name" id="outPengumpul3">-</p></div>
+                    <div class="sig-item"><p class="sig-label">VALIDASI KEPALA RUANGAN</p><div class="sig-space"></div><p class="sig-name" id="outValidasi3">-</p></div>
+                </div>
+            </div>
+        </div>
+
+       <!-- ================= LEMBAR 4 ================= -->
+<div class="page-container">
+    <div class="header">
+        <div class="logo"><img src="icon.png" alt="Logo" class="logo-img"></div>
+        <div class="title">EVALUASI SITE MARKETING INSTALASI BEDAH SENTRAL RSUD KOJA</div>
+    </div>
+    <div class="info-section">
+        <div class="info-row">RUANGAN : <span id="outRuangan4" class="out-text"></span></div>
+        <div class="info-row">HARI/TGL : <span id="outTanggal4" class="out-text"></span></div>
+    </div>
+    <table class="tabel-output">
+        <colgroup>
+            <col style="width: 3%;"><col style="width: 10%;"><col style="width: 21%;">
+            <col style="width: 8%;"><col style="width: 17%;">
+            <col style="width: 11%;"><col style="width: 11%;"><col style="width: 11%;">
+            <col style="width: 8%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="header-center">NO</th>
+                <th class="header-center">TANGGAL</th>
+                <th class="header-center">NAMA LENGKAP PASIEN</th>
+                <th class="header-center">NO.RM</th>
+                <th class="header-center">DIAGNOSA</th>
+                <th class="header-horizontal">SITE MARKETING DILAKUKAN OLEH OPERATOR</th>
+                <th class="header-horizontal">SITE MARKETING DILAKUKAN SEBELUM MASUK KAMAR</th>
+                <th class="header-horizontal">GAMBAR SITE MARKETING SESUAI DOKTER OPERATOR</th>
+                <th class="header-center">N</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody4"></tbody>
+    </table>
+    <div class="footer">
+        <div class="footer-top">
+            <div class="keterangan">
+                <p>KETERANGAN</p>
+                <p>N = NUMERATOR INDIKATOR KELENGKAPAN PENGISIAN ASSESMEN AWAL OPERASI UNTUK KOLOM 4, 5, 6 DIISI DENGAN</p>
+                <p>0 = TIDAK DILAKUKAN</p>
+                <p>1 = DILAKUKAN</p>
+            </div>
+            <div class="total-section">
+                <table class="total-table">
+                    <tr><td style="font-weight: bold;">TOTAL</td><td><span id="totalN4">0</span></td></tr>
+                    <tr><td style="font-weight: bold;">PERSENTASE N/D *100%</td><td><span id="persentase4">0%</span></td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="signature-row">
+            <div class="sig-item"><p class="sig-label">PENGUMPUL DATA</p><div class="sig-space"></div><p class="sig-name" id="outPengumpul4">-</p></div>
+            <div class="sig-item"><p class="sig-label">VALIDASI KEPALA RUANGAN</p><div class="sig-space"></div><p class="sig-name" id="outValidasi4">-</p></div>
+        </div>
+    </div>
 </div>
 
-<div id="app" class="d-none">
-<aside id="side" class="sidebar">
-  <div class="side-head"><div class="brand-logo sm"><i class="bi bi-heart-pulse-fill"></i></div><div class="brand-copy"><b>SIM-KOJA</b><small>V2.0 Enterprise</small></div><button id="pin" class="icon-btn dark"><i class="bi bi-chevron-double-left"></i></button></div>
-  <div class="side-scroll">
-    <div class="caption">MAIN</div>
-    <button class="nav-link active" data-view="dashboard"><i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span></button>
-    <div class="caption">SDM KLINIS</div>
-    <button class="nav-link" data-view="employees"><i class="bi bi-people-fill"></i><span>Profil Pegawai</span></button>
-    <button class="nav-link" data-view="cv"><i class="bi bi-person-vcard-fill"></i><span>CV & Riwayat</span></button>
-    <button class="nav-link" data-view="competency"><i class="bi bi-award-fill"></i><span>Kompetensi</span></button>
-    <button class="nav-link" data-view="authority"><i class="bi bi-shield-check"></i><span>Kewenangan Klinis</span></button>
-    <button class="nav-link" data-view="credentials"><i class="bi bi-patch-check-fill"></i><span>Kredensial</span></button>
-    <div class="caption">DOCUMENTS</div>
-    <button class="nav-link" data-view="documents"><i class="bi bi-folder2-open"></i><span>Document Center</span><em id="docCount">0</em></button>
-    <button class="nav-link" data-view="matrix"><i class="bi bi-table"></i><span>Matriks Kompetensi</span></button>
-    <div class="caption">OPERASIONAL</div>
-    <button class="nav-link" data-view="monitoring"><i class="bi bi-activity"></i><span>Monitoring</span></button>
-    <div class="caption">REPORTS</div>
-    <button class="nav-link" data-view="reports"><i class="bi bi-bar-chart-line-fill"></i><span>Laporan</span></button>
-    <button class="nav-link admin-only" data-view="user-management"><i class="bi bi-person-gear"></i><span>Manajemen User</span></button>
-    <button class="nav-link" data-view="settings"><i class="bi bi-gear-fill"></i><span>Settings</span></button>
-  </div>
-  <div class="side-foot"><button id="quick" class="quick"><i class="bi bi-cloud-arrow-up-fill"></i><span><b>Quick Upload</b><small>Tambah dokumen pegawai</small></span></button><button id="logout" class="logout"><i class="bi bi-box-arrow-left"></i><span>Logout</span></button></div>
-</aside>
-
-<div class="main">
-<header class="topbar">
-  <div class="d-flex align-items-center gap-2"><button id="mobile" class="icon-btn d-lg-none"><i class="bi bi-list"></i></button><div class="crumb">SIM-KOJA <i class="bi bi-chevron-right"></i> <b id="crumb">Dashboard</b></div></div>
-  <div class="actions"><div class="search"><i class="bi bi-search"></i><input id="search" placeholder="Search anything..."></div>
-    <button id="notif" class="icon-btn bell"><i class="bi bi-bell-fill"></i><span id="badge">0</span></button>
-    <div class="dropdown"><button class="profile" data-bs-toggle="dropdown"><span class="avatar">AD</span><span class="hide-sm"><b>Admin SIM-KOJA</b><small>Super Admin</small></span><i class="bi bi-chevron-down"></i></button>
-      <ul class="dropdown-menu dropdown-menu-end border-0 shadow"><li><button class="dropdown-item" data-view="settings">Profil & Settings</button></li><li><button class="dropdown-item" id="logout2">Logout</button></li></ul>
+           <!-- ================= LEMBAR 5 ================= -->
+<div class="page-container">
+    <div class="header">
+        <div class="logo"><img src="icon.png" alt="Logo" class="logo-img"></div>
+        <div class="title">INFORMED CONSENT</div>
     </div>
-  </div>
-</header>
-<main id="content" class="content"></main>
-<footer>SIM-KOJA V2.0 • SDM & Kewenangan Klinis Kamar Operasi • <span id="dateNow"></span></footer>
-</div></div>
+    <div class="info-section">
+        <div class="info-row">RUANGAN : <span id="outRuangan5" class="out-text"></span></div>
+        <div class="info-row">HARI/TGL : <span id="outTanggal5" class="out-text"></span></div>
+    </div>
+    <table class="tabel-output">
+        <colgroup>
+            <col style="width: 3%;"><col style="width: 15%;"><col style="width: 6%;">
+            <col style="width: 11%;"><col style="width: 11%;">
+            <col style="width: 5%;"><col style="width: 5%;"><col style="width: 5%;">
+            <col style="width: 5%;"><col style="width: 5%;"><col style="width: 5%;">
+            <col style="width: 5%;"><col style="width: 5%;"><col style="width: 9%;">
+            <col style="width: 5%;">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="header-center">NO</th>
+                <th class="header-center">NAMA LENGKAP PASIEN</th>
+                <th class="header-center">NO.RM</th>
+                <th class="header-center">DIAGNOSA</th>
+                <th class="header-center">TINDAKAN OPERASI</th>
+                <th><div class="rotated-text">OPERATOR</div></th>
+                <th><div class="rotated-text">DIAGNOSIS DASAR</div></th>
+                <th><div class="rotated-text">DIAGNOSIS TINDAKAN</div></th>
+                <th><div class="rotated-text">INDIGASI TINDAKAN</div></th>
+                <th><div class="rotated-text">TATA CARA</div></th>
+                <th><div class="rotated-text">RESIKO TINDAKAN</div></th>
+                <th><div class="rotated-text">KOMPLIKASI</div></th>
+                <th><div class="rotated-text">PRODONSIAL</div></th>
+                <th><div class="rotated-text">TITURAN DI PASIEN ID LENGKAP</div></th>
+                <th class="header-center">N</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody5"></tbody>
+    </table>
+    <div class="footer">
+        <div class="footer-top">
+            <div class="keterangan">
+                <p>KETERANGAN</p>
+                <p>N = NUMERATOR INDIKATOR KELENGKAPAN PENGISIAN ASSESMEN AWAL OPERASI UNTUK KOLOM 4, 5, 6 DIISI DENGAN</p>
+                <p>0 = TIDAK DILAKUKAN</p>
+                <p>1 = DILAKUKAN</p>
+            </div>
+            <div class="total-section">
+                <table class="total-table">
+                    <tr><td style="font-weight: bold;">TOTAL</td><td><span id="totalN5">0</span></td></tr>
+                    <tr><td style="font-weight: bold;">PERSENTASE N/D *100%</td><td><span id="persentase5">0%</span></td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="signature-row">
+            <div class="sig-item"><p class="sig-label">PENGUMPUL DATA</p><div class="sig-space"></div><p class="sig-name" id="outPengumpul5">-</p></div>
+            <div class="sig-item"><p class="sig-label">VALIDASI KEPALA RUANGAN</p><div class="sig-space"></div><p class="sig-name" id="outValidasi5">-</p></div>
+        </div>
+    </div>
+</div>
 
-<div class="modal fade" id="empModal"><div class="modal-dialog modal-xl modal-dialog-scrollable"><div class="modal-content">
-  <div class="modal-header"><h5 class="modal-title">Data Pegawai</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
-  <form id="empForm"><div class="modal-body"><input id="empId" type="hidden"><div class="row g-3">
-    <div class="col-md-7"><label class="form-label">Nama Lengkap *</label><input id="empName" class="form-control" required></div>
-    <div class="col-md-5"><label class="form-label">NIP</label><input id="empNip" class="form-control"></div>
-    <div class="col-md-4"><label class="form-label">Profesi</label><select id="empProf" class="form-select"><option>Perawat</option><option>Dokter</option><option>Penata Anestesi</option><option>Administrasi</option></select></div>
-    <div class="col-md-4"><label class="form-label">Jabatan</label><input id="empPos" class="form-control"></div>
-    <div class="col-md-4"><label class="form-label">Unit</label><select id="empUnit" class="form-select"><option>Kamar Operasi</option><option>Kamar Operasi 3B</option><option>Kamar Operasi 4C</option><option>Kamar Operasi 5D</option><option>Anestesi</option><option>Recovery Room</option></select></div>
-    <div class="col-md-4"><label class="form-label">Status</label><select id="empStatus" class="form-select"><option>PNS</option><option>Non-PNS</option><option>PPPK</option><option>PPPK PW</option></select></div>
-    <div class="col-md-4"><label class="form-label">No. HP</label><input id="empPhone" class="form-control"></div>
-    <div class="col-md-4"><label class="form-label">Email</label><input id="empEmail" class="form-control"></div>
-    <div class="col-md-4"><label class="form-label">Nomor STR</label><input id="empStr" class="form-control"></div>
-    <div class="col-md-4"><label class="form-label">Masa Aktif STR</label><input id="empStrExpiry" type="date" class="form-control"></div>
-    <div class="col-md-4 d-flex align-items-end"><div class="form-check mb-2"><input id="empStrLifetime" class="form-check-input" type="checkbox"><label class="form-check-label" for="empStrLifetime">STR seumur hidup</label></div></div>
-    <div class="col-md-4"><label class="form-label">Nomor SIPP</label><input id="empSipp" class="form-control"></div>
-    <div class="col-12"><label class="form-label">Alamat</label><textarea id="empAddr" class="form-control"></textarea></div>
-  </div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button><button class="btn btn-primary">Simpan</button></div></form>
-</div></div></div>
+    <!--
+      GANTI URL DI BAWAH dengan URL Web App Apps Script Anda.
+      Jangan hapus akhiran ?mode=bridge.
+    -->
+    <iframe
+        id="googleSheetsBridge"
+        src="PASTE_URL_WEB_APP_ANDA_DI_SINI?mode=bridge"
+        title="Google Sheets Secure Bridge"
+        aria-hidden="true"
+        tabindex="-1"
+        style="display:none;width:0;height:0;border:0;">
+    </iframe>
 
-<!-- Create Account Modal -->
-<div class="modal fade" id="createAccountModal"><div class="modal-dialog"><div class="modal-content">
-  <div class="modal-header"><h5 class="modal-title">Buat Akun Baru</h5><button class="btn-close" data-bs-dismiss="modal"></button></div>
-  <form id="createAccountForm"><div class="modal-body">
-    <div class="mb-3"><label class="form-label">Nama</label><input id="createName" class="form-control" required></div>
-    <div class="mb-3"><label class="form-label">Username</label><input id="createUsername" class="form-control" required></div>
-    <div class="mb-3"><label class="form-label">Password</label><input id="createPassword" type="password" class="form-control" required></div>
-    <div class="mb-3"><label class="form-label">Kaitkan dengan Pegawai (opsional)</label><select id="createEmployee" class="form-select"><option value="">-- Tidak ada --</option></select></div>
-  </div>
-  <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button><button class="btn btn-primary">Buat & Masuk</button></div></form>
-</div></div></div>
-
-<div class="modal fade" id="docModal"><div class="modal-dialog modal-xl modal-dialog-scrollable"><div class="modal-content">
- <div class="modal-header"><div><h5 class="modal-title">Upload / Kelola Dokumen</h5><small class="text-muted">PDF dan gambar dapat dipreview langsung.</small></div><button class="btn-close" data-bs-dismiss="modal"></button></div>
- <form id="docForm"><div class="modal-body"><input id="docId" type="hidden"><div class="row g-4">
-   <div class="col-lg-7"><div class="row g-3">
-    <div class="col-md-6"><label class="form-label">Pegawai *</label><select id="docEmp" class="form-select" required></select></div>
-    <div class="col-md-6"><label class="form-label">Jenis Dokumen *</label><select id="docType" class="form-select" required></select></div>
-    <div class="col-md-6"><label class="form-label">Nomor</label><input id="docNo" class="form-control"></div>
-    <div class="col-md-3"><label class="form-label">Terbit</label><input id="docIssue" type="date" class="form-control"></div>
-    <div class="col-md-3"><label class="form-label">Expired</label><input id="docExp" type="date" class="form-control"></div>
-    <div class="col-12"><label class="form-label">File</label><div id="drop" class="upload-zone"><div class="upload-icon"><i class="bi bi-cloud-arrow-up-fill"></i></div><b>Drag & Drop File</b><div class="text-muted small">atau klik tombol • maksimum 10 MB</div><button class="btn btn-outline-primary btn-sm mt-3" type="button" id="pick">Pilih File</button><input id="file" type="file" class="d-none" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"></div><div id="fileInfo" class="mt-2"></div></div>
-    <div class="col-12"><label class="form-label">Keterangan</label><textarea id="docNotes" class="form-control"></textarea></div>
-   </div></div>
-   <div class="col-lg-5"><div class="preview-box"><div class="preview-head"><b><i class="bi bi-eye me-1"></i>Preview</b><span>LIVE</span></div><div id="livePreview" class="empty-preview"><i class="bi bi-file-earmark-text"></i><div>Preview akan tampil di sini</div></div></div></div>
- </div></div><div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button><button class="btn btn-primary"><i class="bi bi-cloud-arrow-up me-1"></i>Simpan Dokumen</button></div></form>
-</div></div></div>
-
-<div class="modal fade" id="viewer"><div class="modal-dialog modal-fullscreen"><div class="modal-content viewer"><div class="modal-header"><div><h5 id="viewerTitle" class="modal-title">Document Viewer</h5><small id="viewerMeta" class="text-white-50"></small></div><button class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div><div class="modal-body p-0"><div id="viewerBody" class="viewer-body"></div></div><div class="modal-footer"><button id="downloadBtn" class="btn btn-primary"><i class="bi bi-download me-1"></i>Download</button><button class="btn btn-outline-light" data-bs-dismiss="modal">Tutup</button></div></div></div></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4"></script><script src="app.js"></script>
-</body></html>
+    <script src="script.js"></script>
+</body>
+</html>
